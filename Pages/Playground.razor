@@ -1,0 +1,141 @@
+﻿@page "/playground"
+
+@code{
+    string user = "fabio";
+    string token = "lima";
+    string password = "foo";
+    string max = "5";
+    string item = "2";
+    string weekDay = "";
+    string option = "";
+
+    List<Models.IDropDownListItem> items = new List<Models.IDropDownListItem>()
+{
+        new Models.Item { Value = "1", Text = "One" },
+        new Models.Item { Value = "2", Text = "Two" },
+        new Models.Item { Value = "3", Text = "Three" }
+    };
+
+    DropDownList ddlWeekDays;
+    DropDownList ddlOptions;
+
+    private void IncludeOption()
+    {
+        var newOption = ddlOptions.DataSource.Count + 1;
+
+        ddlOptions.DataSource.Add(new Models.Item
+        {
+            Text = $"Option {newOption}",
+            Value = newOption.ToString()
+        });
+
+        option = newOption.ToString();
+    }
+}
+
+<div class="row">
+    <div class="col-md-4 mb-3">
+        <label>User:</label>
+        <TextBox Id="tbxUser"
+                 CssClass="teste"
+                 @bind-Text="@user"></TextBox>
+    </div>
+    <div class="col-md-4 mb-3">
+        <label>Password MaxLength:</label>
+        <TextBox Id="tbxMax"
+                 @bind-Text="@max"
+                 TextMode="TextBoxMode.Number"></TextBox>
+    </div>
+    <div class="col-md-4 mb-3">
+        <label>Password:</label>
+        <TextBox Id="tbxPassword"
+                 @bind-Text="@password"
+                 MaxLength="@max"
+                 TextMode="TextBoxMode.Password"></TextBox>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 mb-3">
+        <label>Token:</label>
+        <TextBox Id="tbxToken"
+                 @bind-Text="@token"
+                 TextMode="TextBoxMode.MultiLine"
+                 Required="true"
+                 Rows="5"></TextBox>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4 mb-3">
+        <label>Items List:</label>
+        <DropDownList Id="ddlItemsList"
+                      DataSource="@items"
+                      @bind-SelectedValue="@item"></DropDownList>
+    </div>
+    <div class="col-md-4 mb-3">
+        <label>Week Days:</label>
+        <DropDownList Id="ddlWeekDays"
+                      @ref="ddlWeekDays"
+                      @bind-SelectedValue="@weekDay">
+            <DropDownListItem Text="Sunday" Value="1"></DropDownListItem>
+            <DropDownListItem Text="Monday"></DropDownListItem>
+            <DropDownListItem Text="Tusday" Selected="true"></DropDownListItem>
+            <DropDownListItem Text="Wednesday"></DropDownListItem>
+            <DropDownListItem Text="Thursday"></DropDownListItem>
+            <DropDownListItem Text="Friday"></DropDownListItem>
+            <DropDownListItem Text="Saturday"></DropDownListItem>
+        </DropDownList>
+    </div>
+    <div class="col-md-4 mb-3">
+        <label>Dynamic Options:</label>
+        <DropDownList Id="ddlOptions"
+                      @ref="ddlOptions"
+                      @bind-SelectedValue="@option">
+            @for (var i = 1; i <= 50; i++)
+            {
+                <DropDownListItem Text="@($"Option {i}")" Value="@i.ToString()" Selected="@(i == 10)"></DropDownListItem>
+            }
+        </DropDownList>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <button type="button"
+                class="btn btn-primary"
+                @onclick="@(e => item = "3")">
+            Select Three
+        </button>
+    </div>
+    <div class="col-md-4">
+        <button type="button"
+                class="btn btn-primary"
+                @onclick="@(e => ddlWeekDays.ToggleDisabled())">
+            @((ddlWeekDays?.Disabled ?? false) ? "Enable" : "Disable") WeekDay
+        </button>
+    </div>
+    <div class="col-md-4">
+        <button type="button"
+                class="btn btn-primary"
+                @onclick="@(e => IncludeOption())">
+            Include Option
+        </button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <br />
+        MaxLength: @max
+        <br />
+        User: @user
+        <br />
+        Password: @password
+        <br />
+        Token: @token
+        <br />
+        SelectedItem: @item
+        <br />
+        Week Day: @weekDay
+        <br />
+        Option: @option
+        <br />
+    </div>
+</div>

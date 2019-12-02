@@ -1,0 +1,16 @@
+﻿@inherits DropDownListComponent
+
+    <select @onchange="OnChangeAsync" 
+            id="@Id" 
+            class="@AllCssClass"
+            disabled="@Disabled">
+        @foreach (var data in DataSource)
+        {
+            var value = data.Value ?? data.Text;
+            <option value="@value" selected="@(value == SelectedValue)">@data.Text</option>
+        }
+    </select>
+
+<CascadingValue Value=this>
+    @ChildContent
+</CascadingValue>
