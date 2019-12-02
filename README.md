@@ -7,7 +7,7 @@
 >
 > English: N/A
 >
-> Português: https://www.fabiosilvalima.net/
+> PortuguÃªs: https://www.fabiosilvalima.net/blazor-mais-que-um-webforms-de-luxo/
 
 ---
 
@@ -24,6 +24,6 @@ Licence:
 
 ---
 
-![Programação no Mundo Real Design Patterns Vol. 1](https://www.fabiosilvalima.net/wp-content/uploads/2017/02/fabiosilvalima-ebook-design-patterns-INSTAGRAM-2.png)
+![ProgramaÃ§Ã£o no Mundo Real Design Patterns Vol. 1](https://www.fabiosilvalima.net/wp-content/uploads/2017/02/fabiosilvalima-ebook-design-patterns-INSTAGRAM-2.png)
 
   [1]: https://fabiosilvalima.net
